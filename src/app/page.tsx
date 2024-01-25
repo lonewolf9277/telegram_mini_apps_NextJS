@@ -10,6 +10,7 @@ import CvvInput from './components/cvv-input';
 import lunaCheck from './components/luna-check';
 
 export default function Home() {
+  const [username, setUsername] = useState<string>('');
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
@@ -24,15 +25,15 @@ export default function Home() {
     const user: string = tokens[1];
     console.log(user.split('='));
 
-    // const jsonData = JSON.parse(decodeURIComponent(tg.initData));
-    // console.log(jsonData);
+    const jsonData = JSON.parse(user.split('=')[1]);
+    console.log(jsonData);
+    setUsername(user.split('=')[1]);
   });
 
   const [cardNumber, setCardNumber] = useState<string>('');
   const [nameOnCard, setNameOnCard] = useState<string>('');
   const [expiryDate, setExpiryDate] = useState<string>('');
   const [cvv, setCvv] = useState<string>('');
-  const [username, setUsername] = useState<string>('');
 
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -53,7 +54,6 @@ export default function Home() {
 
   // MAIN BUTTON CHECK
   useEffect(() => {
-    setUsername(window.Telegram.WebApp.WebAppInitData.user.username);
     if (
       cardNumber.length === 19
       && lunaCheck(cardNumber.replace(/\s/g, ''))
