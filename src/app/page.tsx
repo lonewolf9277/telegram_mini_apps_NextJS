@@ -19,6 +19,11 @@ export default function Home() {
     tg.ready();
     console.log(tg);
     console.log(decodeURIComponent(tg.initData));
+    const userData = decodeURIComponent(tg.initData);
+    const tokens: string[] = userData.split('&');
+    const user: string = tokens[1];
+    console.log(user.split('='));
+
     // const jsonData = JSON.parse(decodeURIComponent(tg.initData));
     // console.log(jsonData);
   });
