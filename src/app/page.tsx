@@ -17,12 +17,16 @@ export default function Home() {
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
     tg.ready();
+    console.log(tg.WebAppInitData)
+    
+    
   });
 
   const [cardNumber, setCardNumber] = useState<string>('');
   const [nameOnCard, setNameOnCard] = useState<string>('');
   const [expiryDate, setExpiryDate] = useState<string>('');
   const [cvv, setCvv] = useState<string>('');
+  const [username, setUsername] = useState<string>('')
 
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -43,6 +47,7 @@ export default function Home() {
 
   // MAIN BUTTON CHECK
   useEffect(() => {
+    setUsername(window.Telegram.WebApp.WebAppInitData.user.username)
     if (
       cardNumber.length === 19
       && lunaCheck(cardNumber.replace(/\s/g, ''))
@@ -82,7 +87,7 @@ export default function Home() {
 
   return (
     <main>
-
+      <p>{username}</p>
       <Paper sx={{ margin: '10px', height: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <a style={{ marginTop: '10px' }} href="https://mig.sbctech.ru">https://mig.sbctech.ru/</a>
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
