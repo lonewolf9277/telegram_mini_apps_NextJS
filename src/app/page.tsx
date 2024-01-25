@@ -17,9 +17,10 @@ export default function Home() {
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
     tg.ready();
+    console.log(tg);
     console.log(decodeURIComponent(tg.initData));
-    const jsonData = JSON.parse(decodeURIComponent(tg.initData));
-    console.log(jsonData);
+    // const jsonData = JSON.parse(decodeURIComponent(tg.initData));
+    // console.log(jsonData);
   });
 
   const [cardNumber, setCardNumber] = useState<string>('');
